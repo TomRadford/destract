@@ -1,0 +1,54 @@
+<script lang="ts">
+	import '../app.css';
+	import { fade, fly } from 'svelte/transition';
+	import Logo from '$lib/components/Logo.svelte';
+	import { recieve, send } from '$lib/pageCrossfade';
+	import { navigating } from '$app/stores';
+	import { twMerge } from 'tailwind-merge';
+	import { defaultGradient, gradients } from '$lib/constants/routes';
+	import { cubicIn, quadIn } from 'svelte/easing';
+	export let data;
+	const key = 'block';
+	const transitionDuration = 4000;
+	let prevBg: string | undefined;
+	$: {
+		if ($navigating) {
+			console.log('nav');
+			prevBg = gradients[$navigating?.from?.route.id];
+			setTimeout(() => {
+				prevBg = undefined;
+			}, transitionDuration);
+		}
+	}
+	$: console.log('from', $navigating?.from?.route?.id, prevBg);
+</script>
+
+<div class={twMerge('relative text-white w-screen h-screen bg-transparent')}>
+	<header class="absolute w-screen text-center z-40">
+		<Logo />
+	</header>
+	{#key data.url}
+		<!-- <main in:recieve={{key}} out:send={{key}}> -->
+		<main
+			in:fly={{ y: -200, duration: transitionDuration, delay: transitionDuration }}
+			out:fly={{ y: 200, duration: transitionDuration }}
+			class="z-20 absolute"
+		>
+			<slot />
+		</main>
+	{/key}
+	<!-- Hack to get background gradient transitions -->
+	{#if prevBg}
+		<div
+			class={twMerge('absolute z-10 w-screen h-screen bg-gradient-to-b', gradients[prevBg])}
+			out:fade={{ duration: transitionDuration }}
+		/>
+	{/if}
+	<div class={twMerge('absolute z-0 w-screen h-screen bg-gradient-to-b', gradients[data.url])} />
+</div>
+
+<style lang="postcss">
+	:global(html) {
+		/* background-color: --background-color; */
+	}
+</style>
