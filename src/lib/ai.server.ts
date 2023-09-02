@@ -13,16 +13,20 @@ const openAIConfig = new Configuration({
 
 export const openai = new OpenAIApi(openAIConfig);
 
-export const aiPrompt = async (messages: ChatCompletionRequestMessage[], stream = false) =>
+export const aiPrompt = async (
+	messages: ChatCompletionRequestMessage[],
+	stream = false,
+	temperature = 0.6
+) =>
 	await openai.createChatCompletion({
 		model: 'gpt-3.5-turbo',
 		stream,
-		temperature: 0.6,
+		temperature,
 		messages
 	});
 
-export const promptAsync = async (prompt: string) => {
-	const res = await aiPrompt([{ role: 'system', content: prompt }]);
+export const promptAsync = async (prompt: string, temperature = 0.6) => {
+	const res = await aiPrompt([{ role: 'system', content: prompt }], false, temperature);
 
 	const data = (await res.json()) as ResponseTypes['createChatCompletion'];
 

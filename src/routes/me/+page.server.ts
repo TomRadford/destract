@@ -8,8 +8,6 @@ export const actions = {
 		const data = await request.formData();
 		const username = data.get('username')?.toString();
 
-		await new Promise((fulfil) => setTimeout(fulfil, 1000));
-
 		if (!username) {
 			return fail(422, {
 				error: {

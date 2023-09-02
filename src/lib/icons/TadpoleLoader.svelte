@@ -1,10 +1,17 @@
 <script>
-   export let classProp = ''
-   export let fill = "#00000"
+	export let classProp = '';
+	export let fill = '#00000';
 </script>
 
-<svg class={classProp} width="24" height="24" viewBox="0 0 24 24" {fill} xmlns="http://www.w3.org/2000/svg">
-    <style>
+<svg
+	class={classProp}
+	width="24"
+	height="24"
+	viewBox="0 0 24 24"
+	{fill}
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<style>
 		.spinner_0XTQ {
 			transform-origin: center;
 			animation: spinner_y6GP 0.75s linear infinite;

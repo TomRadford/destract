@@ -2,15 +2,15 @@
 	import '../app.css';
 	import { fade, fly, slide } from 'svelte/transition';
 	import Logo from '$lib/components/nav/Logo.svelte';
-	import { navigating } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 	import { twMerge } from 'tailwind-merge';
 	import { defaultGradient, gradients } from '$lib/constants/routes';
 	import { crossfade } from '$lib/transitions/crossfade';
 	export let data;
 	const [send, recieve] = crossfade;
 	const key = 'bgTransition';
-	$: currentBg = gradients[data.url] || defaultGradient;
-	const duration = 300
+	$: currentBg = gradients[$page.route.id] || defaultGradient;
+	const duration = 300;
 </script>
 
 <svelte:head>
@@ -31,7 +31,7 @@
 		<div class="">
 			{#key data.url}
 				<main
-					class="p-3 w-full"
+					class="py-2 px-10 w-full"
 					in:fly={{ x: -200, duration, delay: duration }}
 					out:fly={{ x: 200, duration }}
 				>

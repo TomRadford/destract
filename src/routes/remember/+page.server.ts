@@ -1,11 +1,5 @@
-import { distractionChecks } from '$lib/constants/checks.server.js'
+import { redirect } from '@sveltejs/kit';
 
-export const load = ({ request }) => {
-    const index = Math.round(Math.random() * (distractionChecks.length - 1))
-    return {
-        check: {
-            message: distractionChecks[index].question,
-            index: distractionChecks
-        }
-    }
-}
+export const load = () => {
+	throw redirect(300, '/remember/affirm/1');
+};

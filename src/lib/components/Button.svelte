@@ -5,12 +5,12 @@
 	import { twMerge } from 'tailwind-merge';
 
 	export let href: T extends 'link' ? string : undefined;
-	export let type: T
+	export let type: T;
 	/**
 	 * For loading animation
 	 */
 	export let loading = false;
-	export let classProp = '';
+	export let className = '';
 
 	//ToDo Revisit
 	// const dispatch = createEventDispatcher<{click: T extends 'button' ? () => void : undefined}>()
@@ -18,7 +18,7 @@
 	// 	dispatch('click', clickHandler)
 	// }
 	const style = `text-center relative bg-white bg-opacity-30 w-max text-black text-opacity-50 text-2xl font-medium min-w-[16rem] rounded-3xl py-3 hover:bg-opacity-50 transition-all duration-400 h-14`;
-</script>	
+</script>
 
 <!-- 
 	@component
@@ -27,7 +27,7 @@
  -->
 
 {#if type !== 'link'}
-	<button class={twMerge(style, classProp)} {type} on:click>
+	<button class={twMerge(style, className)} {type} on:click>
 		<div class="px-10">
 			<slot />
 		</div>
@@ -39,7 +39,7 @@
 	</button>
 {:else}
 	<a {href}>
-		<div class={style}>
+		<div class={twMerge(style, className)}>
 			<div class="px-10">
 				<slot />
 			</div>

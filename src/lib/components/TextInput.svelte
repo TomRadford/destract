@@ -15,7 +15,7 @@
 	export let loading = false;
 </script>
 
-<div class={twMerge("w-full flex justify-center relative max-w-3xl")}>
+<div class={twMerge('w-full flex justify-center relative max-w-3xl')}>
 	<input
 		{name}
 		{disabled}

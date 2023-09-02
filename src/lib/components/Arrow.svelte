@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let up = true
+	export let up = true;
 </script>
 
 <button

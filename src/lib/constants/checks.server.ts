@@ -123,7 +123,6 @@ export const distractionChecks = [
 		question: 'Is this distraction worth compromising your goals? 🤯',
 		response: 'no'
 	},
-
 	{
 		question: 'Will this distraction move you closer to your goals? 🚀',
 		response: 'no'

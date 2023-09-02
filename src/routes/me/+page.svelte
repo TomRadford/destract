@@ -14,7 +14,7 @@
 	let value = data.user.username;
 	let loading = false;
 
-    const duration = 600
+	const duration = 600;
 
 	$: console.log(form);
 	$: console.log(data);
@@ -26,7 +26,6 @@
 	use:enhance={() => {
 		loading = true;
 		return async ({ update }) => {
-			
 			await update({ reset: false });
 			loading = false;
 		};
@@ -39,17 +38,17 @@
 		{value}
 		classProp="text-2xl sm:text-4xl font-semibold text-center"
 		required
-        disabled={form?.success}
+		disabled={form?.success}
 	/>
 	<input name="id" value={data.user?.id} hidden />
-    {#if form?.error?.message === 'no-user'}
-    <span in:slide={{ duration}} out:slide={{duration}} class='text-center'>
-        <h3 class="font-semibold text-2xl mb-4">That account does not exist...</h3>
-        <p>If you don't have an account, use:</p>
-		<p><span class="font-semibold">{data.user.username}</span> as your username!</p>
-        <p class="font-italic mt-4">{form?.error?.reminder}</p>
-    </span>
-    {/if}
+	{#if form?.error?.message === 'no-user'}
+		<span in:slide={{ duration }} out:slide={{ duration }} class="text-center">
+			<h3 class="font-semibold text-2xl mb-4">That account does not exist...</h3>
+			<p>If you don't have an account, use:</p>
+			<p><span class="font-semibold">{data.user.username}</span> as your username!</p>
+			<p class="font-italic mt-4">{form?.error?.reminder}</p>
+		</span>
+	{/if}
 
 	{#if form?.success}
 		<div
@@ -59,11 +58,11 @@
 		>
 			<p class="pr-4">Welcome back {form.username.split(' ')[0]}...</p>
 			<p in:fade={{ delay: duration + 700 }} out:fade class="font-light">
-			    ...now go <a href="/" class="font-semibold">forget!</a>
+				...now go <a href="/" class="font-semibold">forget!</a>
 			</p>
 		</div>
 	{:else}
-		<div in:fade={{delay: duration, duration}} out:fade={{duration}}>
+		<div in:fade={{ delay: duration, duration }} out:fade={{ duration }}>
 			<Button type="submit" {loading}>Remember me</Button>
 		</div>
 	{/if}

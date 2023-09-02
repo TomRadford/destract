@@ -2,16 +2,16 @@ version: '3.9'
 
 services:
   postgres:
-   image: postgres:latest
-   container_name: destract-postgres
-   environment:
-    POSTGRES_DB: destract
-    POSTGRES_USER: db
-    POSTGRES_PASSWORD: password
-   ports:
-    - "5432:5432"
-   volumes:
-    - ./postgres_data:/var/lib/postgressql/postgres_data
+    image: postgres:latest
+    container_name: destract-postgres
+    environment:
+      POSTGRES_DB: destract
+      POSTGRES_USER: db
+      POSTGRES_PASSWORD: password
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres_data:/var/lib/postgressql/postgres_data
 
 volumes:
   postgres_data:
