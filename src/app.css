@@ -5,6 +5,3 @@
 :root {
 	font-family: 'Inter', sans-serif;
 }
-body {
-	@apply overflow-hidden;
-}
