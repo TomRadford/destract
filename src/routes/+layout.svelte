@@ -41,11 +41,13 @@
 		</div>
 	</div>
 
+	<div class="animate-[grain_8s_steps(10)_infinite] absolute -left-[50%] -top-[110%] w-[300%] h-[300%] overflow-visible -z-[5] bg-[url('noise-3.svg')]"></div>
+
 	{#key data.url}
 		<div
 			out:send={{ key }}
 			in:recieve={{ key }}
-			class={twMerge('-z-10 top-0 absolute w-screen h-screen bg-gradient-to-b', currentBg)}
+			class={twMerge(`-z-10  absolute inset-0  bg-gradient-to-b`, currentBg)}
 		/>
 	{/key}
 </div>

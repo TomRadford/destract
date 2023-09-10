@@ -27,7 +27,6 @@ export const actions = {
 			(await promptAsync(
 				`Generate a cryptic hint with text and emojis as text-only for the following distraction: ${thought}`
 			)) ?? '🤷‍♂️';
-
 		const thoughtEntry = await prisma.thought.create({
 			data: { userId: user.id, content: thought, hint }
 		});
