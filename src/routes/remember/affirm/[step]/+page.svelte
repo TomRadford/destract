@@ -3,7 +3,9 @@
 	import Button from '$lib/components/Button.svelte';
 	import TextInput from '$lib/components/TextInput.svelte';
 	import { fade } from 'svelte/transition';
-	import { page } from '$app/stores';
+	import { navigating, page } from '$app/stores';
+	import { getRandom } from '$lib/utils/random.js';
+	import { answerHints } from '$lib/constants/answerHints.js';
 	export let data;
 
 	let loading = false;
@@ -25,11 +27,21 @@
 	}}
 >
 	<div class="text-center font-bold text-4xl">{data.check.message}</div>
-	<TextInput name="response" id="" placeholder={`Yes sir!`} isPrompt {loading} autocomplete="off" />
+	<TextInput
+		name="response"
+		id=""
+		placeholder={getRandom(answerHints)}
+		isPrompt
+		{loading}
+		autocomplete="off"
+	/>
 	<input type="number" name="index" value={data.check.index} hidden />
-	{#if !loading}
-		<div transition:fade={{ duration: 150 }}>
-			<Button type="submit">Go!</Button>
-		</div>
-	{/if}
+
+	<div class="h-20">
+		{#if !loading && !$navigating}
+			<div transition:fade={{ duration: 150, delay: 100 }}>
+				<Button type="submit">Go!</Button>
+			</div>
+		{/if}
+	</div>
 </form>
