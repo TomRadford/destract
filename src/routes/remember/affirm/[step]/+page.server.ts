@@ -37,7 +37,7 @@ export const actions = {
 
 		const yesNo = await promptAsync(
 			`Convert this into either 'yes' or 'no': '${userResponse}'`,
-			0.2
+			0.8
 		);
 
 		console.log('_____NEW______');
