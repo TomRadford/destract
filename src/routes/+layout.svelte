@@ -7,6 +7,8 @@
 	import { defaultGradient, gradients } from '$lib/constants/routes';
 	import { crossfade } from '$lib/transitions/crossfade';
 	export let data;
+	let container: HTMLDivElement;
+	let scrollY = 0;
 	const [send, recieve] = crossfade;
 	const key = 'bgTransition';
 	$: currentBg = gradients[$page.route.id] || defaultGradient;
@@ -14,16 +16,27 @@
 </script>
 
 <svelte:head>
-	<title>destract ✨</title>
+	<title>destract ✨ {$page.error && `ERROR ${$page.status}`}</title>
 </svelte:head>
 
-<div class="relative text-white w-screen h-screen bg-transparent flex flex-col justify-center">
-	<nav class="absolute top-4 flex justify-end w-screen px-10">
-		<div class="flex flex-col text-right">
+<div
+	class="text-white w-screen h-screen bg-transparent flex flex-col justify-center overflow-x-hidden"
+	bind:this={container}
+	on:scroll={() => (scrollY = container.scrollTop)}
+>
+	<nav class="absolute top-0 p-4 flex justify-end w-screen px-10">
+		<div class="flex flex-col text-right z-10">
 			<span class="font-semibold">{data.user.username}</span>
 			<a href="/me" class="text-sm font-light">not you?</a>
 		</div>
 	</nav>
+	{#if scrollY !== 0}
+		<div
+			transition:fade
+			class="fixed top-0 transition-all h-24 w-full bg-gradient-to-t from-transparent via-to-[rgba(0,0,0,5%)] to-[rgba(0,0,0,50%)]"
+		/>
+	{/if}
+
 	<div class="h-1/2">
 		<header class="w-screen flex justify-center mb-32">
 			<Logo />
@@ -31,7 +44,7 @@
 		<div class="">
 			{#key data.url}
 				<main
-					class="py-2 px-10 w-full"
+					class="py-2 px-10 w-full pb-32"
 					in:fly={{ x: -200, duration, delay: duration }}
 					out:fly={{ x: 200, duration }}
 				>
@@ -40,17 +53,17 @@
 			{/key}
 		</div>
 	</div>
-
-	<div class="animate-[grain_8s_steps(10)_infinite] absolute -left-[50%] -top-[110%] w-[300%] h-[300%] overflow-visible -z-[5] bg-[url('noise-3.svg')]"></div>
-
-	{#key data.url}
-		<div
-			out:send={{ key }}
-			in:recieve={{ key }}
-			class={twMerge(`-z-10  absolute inset-0  bg-gradient-to-b`, currentBg)}
-		/>
-	{/key}
 </div>
+<div
+	class="animate-[grain_8s_steps(10)_infinite] fixed -left-[50%] -top-[110%] w-[300%] h-[300%] -z-[5] bg-[url('/noise-3.svg')] overflow-hidden"
+/>
+{#key data.url}
+	<div
+		out:send={{ key }}
+		in:recieve={{ key }}
+		class={twMerge(`-z-10 fixed inset-0  bg-gradient-to-b overflow-hidden`, currentBg)}
+	/>
+{/key}
 
 <style lang="postcss">
 	:global(html) {
