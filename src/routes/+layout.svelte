@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>destract ✨ {$page.error && `ERROR ${$page.status}`}</title>
+	<title>destract ✨ {$page.error ? `ERROR ${$page.status}` : ''}</title>
 </svelte:head>
 
 <div
