@@ -52,7 +52,7 @@
 
 	{#if form?.success}
 		<div
-			class="font-medium text-2xl flex flex-col text-right"
+			class="font-medium text-2xl flex flex-col text-center sm:text-right"
 			in:fly={{ duration, delay: duration, x: -100 }}
 			out:fly={{ duration, x: 100 }}
 		>
