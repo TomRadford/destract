@@ -33,7 +33,7 @@ export const distractionChecks = [
 	},
 	{
 		question: "Are you sure this won't derail your progress? 🚂",
-		response: 'no'
+		response: 'yes'
 	},
 	{
 		question: 'Is it worth delaying your achievements for this? ⌛',
