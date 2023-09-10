@@ -1,5 +1,5 @@
 import { usernameReminders } from '$lib/constants/motivations.server.js';
-import { getUser } from '$lib/services/user.server.js';
+import { deleteUser, getUser } from '$lib/services/user.server.js';
 import { getRandom } from '$lib/utils/random.js';
 import { fail } from '@sveltejs/kit';
 
@@ -23,6 +23,11 @@ export const actions = {
 			return fail(422, {
 				error: { message: 'no-user', reminder: getRandom(usernameReminders) }
 			});
+		}
+
+		const currentUsername = cookies.get('username');
+		if (currentUsername) {
+			await deleteUser(currentUsername);
 		}
 
 		cookies.set('username', user.username);
