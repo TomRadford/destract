@@ -6,7 +6,7 @@ export const gradients = {
 	'/remember/forget': 'from-[#8DC2DF] to-[#53514C]',
 	'/remember/nothing': 'from-[#8DC2DF] to-[#53514C]',
 	'/remember/affirm/1': 'from-[#C9B175] to-[#53514C]',
-	'/remember/affirm/2': 'from-[#F5CE68] to-[#53514C]',
+	'/remember/affirm/2': 'from-[#fcc947] to-[#53514C]',
 	'/remember/[id]': 'from-[#5DB7F9] to-[#4B5054]'
 };
 
