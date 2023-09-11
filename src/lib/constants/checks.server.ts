@@ -164,7 +164,7 @@ export const distractionChecks = [
 		response: 'yes'
 	},
 	{
-		question: 'Is this a moment to stay the course isntead of wandering? 🚶',
+		question: 'Is this a moment to stay the course instead of wandering? 🚶',
 		response: 'yes'
 	},
 	{
