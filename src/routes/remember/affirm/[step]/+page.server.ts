@@ -6,9 +6,13 @@ import prisma from '$lib/prisma.js';
 export const load = async ({ params, parent }) => {
 	const { user } = await parent();
 
-	const count = await prisma.thought.count({ where: { userId: user.id } });
+	const count = await prisma.thought.count({
+		where: {
+			userId: user.id
+		}
+	});
 	if (!count) {
-		throw redirect(300, '/remember/nothing');
+		throw redirect(307, '/remember/nothing');
 	}
 
 	const affirm = params.step === '2';
@@ -30,7 +34,7 @@ export const actions = {
 		const affirm = params.step === '2';
 
 		if (!username || !userResponse || !index) {
-			throw redirect(300, '/');
+			throw redirect(307, '/');
 		}
 
 		const exitResponse = distractionChecks[parseInt(index as string)].response;
@@ -41,18 +45,32 @@ export const actions = {
 		);
 
 		console.log('_____NEW______');
-		console.log({ userResponse, index: parseInt(index as string) });
-		console.log({ exitResponse, yesNo });
+		console.log({
+			userResponse,
+			index: parseInt(index as string)
+		});
+		console.log({
+			exitResponse,
+			yesNo
+		});
 
 		if (exitResponse === yesNo) {
 			console.log(`${exitResponse} === ${yesNo}`);
-			throw redirect(300, '/remember/forget');
+			throw redirect(307, '/remember/forget');
 		}
 
 		if (!affirm) {
-			throw redirect(300, '/remember/affirm/2');
+			throw redirect(307, '/remember/affirm/2');
 		} else {
-			throw redirect(300, '/remember/list');
+			await prisma.user.update({
+				where: {
+					username
+				},
+				data: {
+					canRemember: true
+				}
+			});
+			throw redirect(307, '/remember/list');
 		}
 	}
 };
