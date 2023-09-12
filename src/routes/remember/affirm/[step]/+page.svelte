@@ -9,10 +9,6 @@
 	export let data;
 
 	let loading = false;
-
-	$: affirm = $page.params.step === '2';
-
-	$: console.log(affirm);
 </script>
 
 <form
