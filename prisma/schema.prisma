@@ -19,7 +19,8 @@ model Thought {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  username String    @unique
-  thoughts Thought[]
+  id          Int       @id @default(autoincrement())
+  username    String    @unique
+  thoughts    Thought[]
+  canRemember Boolean   @default(false)
 }
