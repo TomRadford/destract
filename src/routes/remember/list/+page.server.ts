@@ -1,9 +1,12 @@
 import prisma from '$lib/prisma.js';
+import { Prisma } from '@prisma/client';
 import { error, redirect } from '@sveltejs/kit';
 
 export const load = async ({ parent }) => {
 	const { user } = await parent();
-	const thoughtCount = await prisma.thought.count({ where: { userId: user.id } });
+	const thoughtQuery = { where: { userId: user.id } };
+
+	const thoughtCount = await prisma.thought.count(thoughtQuery);
 	if (!thoughtCount) {
 		throw redirect(307, '/');
 	}
@@ -16,6 +19,7 @@ export const load = async ({ parent }) => {
 
 	await prisma.user.update({ where: { id: user.id }, data: { canRemember: false } });
 
+	const thoughts = await prisma.thought.findMany(thoughtQuery);
 	return {
 		thoughts
 	};
