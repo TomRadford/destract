@@ -6,7 +6,7 @@
 		if ($page.error?.message === 'Naughty! You need to answer the questions first! 🫢') {
 			setTimeout(async () => {
 				await goto('/remember');
-			}, 3000);
+			}, 4000);
 		}
 	});
 </script>
