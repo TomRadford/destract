@@ -39,10 +39,12 @@ export const actions = {
 
 		const exitResponse = distractionChecks[parseInt(index as string)].response;
 
-		const yesNo = await promptAsync(
-			`Convert this into either 'yes' or 'no': '${userResponse}'`,
-			0.8
+		let yesNo = await promptAsync(
+			`Convert this text into either 'yes', 'no' or 'uncertain' if you're really not sure: '${userResponse}'`,
+			0.5
 		);
+
+		yesNo = yesNo?.toLowerCase();
 
 		console.log('_____NEW______');
 		console.log({
@@ -53,6 +55,12 @@ export const actions = {
 			exitResponse,
 			yesNo
 		});
+
+		if (yesNo === 'uncertain') {
+			return fail(422, {
+				error: { message: 'uncertain' }
+			});
+		}
 
 		if (exitResponse === yesNo) {
 			console.log(`${exitResponse} === ${yesNo}`);
