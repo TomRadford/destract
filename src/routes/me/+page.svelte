@@ -15,9 +15,6 @@
 	let loading = false;
 
 	const duration = 600;
-
-	$: console.log(form);
-	$: console.log(data);
 </script>
 
 <form
