@@ -15,7 +15,11 @@ export default {
 					'70%': { transform: 'translate(0%, 15%)' },
 					'80%': { transform: 'translate(3%, 35%)' },
 					'90%': { transform: 'translate(-10%, 10%) ' }
-				}
+				},
+				fadein: {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
+				  }
 			}
 		}
 	},

@@ -24,12 +24,14 @@
 	bind:this={container}
 	on:scroll={() => (scrollY = container.scrollTop)}
 >
-	<nav class="absolute top-0 p-4 flex justify-end w-screen px-10">
-		<div class="flex flex-col text-right z-10">
-			<span class="font-semibold">{data.user.username}</span>
-			<a href="/me" class="text-sm font-light">not you?</a>
-		</div>
-	</nav>
+	{#if data.user}
+		<nav class="absolute top-0 p-4 flex justify-end w-screen px-10">
+			<div class="flex flex-col text-right z-10">
+				<span class="font-semibold">{data.user.username}</span>
+				<a href="/me" class="text-sm font-light">not you?</a>
+			</div>
+		</nav>
+	{/if}
 	{#if scrollY !== 0}
 		<div
 			transition:fade

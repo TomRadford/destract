@@ -1,6 +1,5 @@
 import { promptAsync } from '$lib/ai.server';
 import prisma from '$lib/prisma';
-import type { User } from '@prisma/client';
 import { getUniqueName } from './uniqueName';
 
 export const createUser = async (username: string) => {
@@ -17,8 +16,9 @@ export const deleteUser = async (username: string) => {
 
 const recursivleyGenerateName = async (): Promise<string> => {
 	let username = '';
+	console.log(`running new name gen @ ${new Date().toString()}`);
 	try {
-		username = (await promptAsync('give me a silly name')) ?? getUniqueName();
+		username = (await promptAsync('give me a very random funny silly name')) ?? getUniqueName();
 	} catch {
 		username = getUniqueName();
 	}

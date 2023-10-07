@@ -15,6 +15,6 @@ export const actions = {
 			});
 		}
 
-		return await handleAuth({ cookies, username });
+		return await handleAuth({ username, cookies });
 	}
 };
