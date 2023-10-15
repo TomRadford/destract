@@ -34,14 +34,14 @@
 				<a href="/me" class="text-sm font-light">not you?</a>
 			</div>
 		</nav>
-	{/if}
-	{#if scrollY !== 0}
-		<div
-			transition:fade
-			class="fixed top-0 transition-all h-24 w-full bg-gradient-to-t from-transparent via-to-[rgba(0,0,0,5%)] to-[rgba(0,0,0,50%)]"
-		/>
-	{/if}
 
+		{#if scrollY !== 0}
+			<div
+				transition:fade
+				class="fixed top-0 transition-all h-24 w-full bg-gradient-to-t from-transparent via-to-[rgba(0,0,0,5%)] to-[rgba(0,0,0,50%)]"
+			/>
+		{/if}
+	{/if}
 	<div class="h-1/2">
 		<header class="w-screen flex justify-center mb-32">
 			<Logo />
