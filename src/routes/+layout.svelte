@@ -6,6 +6,7 @@
 	import { twMerge } from 'tailwind-merge';
 	import { defaultGradient, gradients } from '$lib/constants/routes';
 	import { crossfade } from '$lib/transitions/crossfade';
+	import { ProgressBar } from '@prgm/sveltekit-progress-bar';
 	export let data;
 	let container: HTMLDivElement;
 	let scrollY = 0;
@@ -18,6 +19,8 @@
 <svelte:head>
 	<title>destract ✨ {$page.error ? `ERROR ${$page.status}` : ''}</title>
 </svelte:head>
+
+<ProgressBar class="text-white" displayThresholdMs={200} />
 
 <div
 	class="text-white w-screen h-screen bg-transparent flex flex-col justify-center overflow-x-hidden"
