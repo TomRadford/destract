@@ -40,7 +40,7 @@ export const actions = {
 		const exitResponse = distractionChecks[parseInt(index as string)].response;
 
 		let yesNo = await promptAsync(
-			`Convert this text into either 'yes', 'no' or 'uncertain' if you're really not sure: '${userResponse}'`,
+			`Convert this text into either 'yes', 'no': '${userResponse}'`,
 			0.5
 		);
 
