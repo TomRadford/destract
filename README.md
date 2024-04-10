@@ -6,4 +6,14 @@
 
 Stop yourself from going down wormholes...
 
+Small SvelteKit application built to see how well I could implement smooth page transitions for a minimalistic application
+
+## Tech:
+- Typescript
+- Svelte/SvelteKit
+- Primsa
+- OpenAI API
+
+## (Demo)[https://destract.vercel.app]
+
 </div>
