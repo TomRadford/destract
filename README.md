@@ -7,6 +7,9 @@
 Stop yourself from going down wormholes...
 
 Small SvelteKit application built to see how well I could implement smooth page transitions for a minimalistic application that leverages simple LLM prompts.
+
+The goal is to store your distractions to use them as a reward later!
+
 </div>
 
 ## Tech:
