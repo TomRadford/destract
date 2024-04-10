@@ -6,7 +6,7 @@
 
 Stop yourself from going down wormholes...
 
-Small SvelteKit application built to see how well I could implement smooth page transitions for a minimalistic application
+Small SvelteKit application built to see how well I could implement smooth page transitions for a minimalistic application that leverages simple LLM prompts.
 </div>
 
 ## Tech:
